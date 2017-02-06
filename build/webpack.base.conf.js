@@ -2,6 +2,7 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
+var entryFiles = require('./entry-files.js')
 
 var env = process.env.NODE_ENV
 // check env & config/index.js to decide whether to enable CSS source maps for the
@@ -9,24 +10,8 @@ var env = process.env.NODE_ENV
 var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
 var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
 var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
-var glob = require('glob')
 
-function getEntry(globPath) {
-  var entries = {},
-    basename, tmp, pathname;
-
-  glob.sync(globPath).forEach(function (entry) {
-    basename = path.basename(entry, path.extname(entry));
-    tmp = entry.split('/').splice(-3);
-    pathname = tmp.splice(0, 1) + '/' + basename; // 正确输出js和html的路径
-    entries[pathname] = entry;
-  });
-  console.log("base-entrys:");
-  console.log(entries);
-  return entries;
-}
-
-var entries = getEntry('./src/module/**/*.js'); // 获得入口js文件
+var entries = entryFiles.getEntry('./src/module/**/*.js'); // 获得入口js文件
 
 module.exports = {
   // entry: {

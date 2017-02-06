@@ -6,6 +6,7 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var entryFiles = require('./entry-files.js')
 var env = config.build.env
 var glob = require('glob')
 
@@ -97,39 +98,43 @@ if (config.build.productionGzip) {
 }
 
 
-function getEntry(globPath) {
-  var entries = {},
-    basename, tmp, pathname;
-
-  glob.sync(globPath).forEach(function (entry) {
-    basename = path.basename(entry, path.extname(entry));
-    tmp = entry.split('/').splice(-3);
-    pathname = tmp.splice(0, 1) + '/' + basename; // 正确输出js和html的路径
-    entries[pathname] = entry;
-  });
-  console.log("prod-entrys:");
-  console.log(entries);
-  return entries;
-}
-
-var pages = getEntry('./src/module/**/*.html');
-console.log("prod pages-----");
-for (var pathname in pages) {
-	console.log("filename:"+pathname + '.html');
-  console.log("template:"+pages[pathname]);
-  // 配置生成的html文件，定义路径等
-  var conf = {
-    filename: pathname + '.html',
-    template: pages[pathname], // 模板路径
-    minify:{                   //
-      removeComments:true,
-      collapseWhitespace: false
-    },
-    inject: true,             // js插入位置
-    chunks: [pathname, "vendor", "manifest"]        // 每个html引用的js模块，也可以在这里加上vendor等公用模块
-  };
-  // 需要生成几个html文件，就配置几个HtmlWebpackPlugin对象
-  webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
-}
-
+entryFiles.genMulPages(webpackConfig.plugins); // 获得入口js文件
 module.exports = webpackConfig
+
+
+// function getEntry(globPath) {
+//   var entries = {},
+//     basename, tmp, pathname;
+
+//   glob.sync(globPath).forEach(function (entry) {
+//     basename = path.basename(entry, path.extname(entry));
+//     tmp = entry.split('/').splice(-3);
+//     pathname = tmp.splice(0, 1) + '/' + basename; // 正确输出js和html的路径
+//     entries[pathname] = entry;
+//   });
+//   console.log("prod-entrys:");
+//   console.log(entries);
+//   return entries;
+// }
+
+// var pages = getEntry('./src/module/**/*.html');
+// console.log("prod pages-----");
+// for (var pathname in pages) {
+// 	console.log("filename:"+pathname + '.html');
+//   console.log("template:"+pages[pathname]);
+//   // 配置生成的html文件，定义路径等
+//   var conf = {
+//     filename: pathname + '.html',
+//     template: pages[pathname], // 模板路径
+//     minify:{                   //
+//       removeComments:true,
+//       collapseWhitespace: false
+//     },
+//     inject: true,             // js插入位置
+//     chunks: [pathname, "vendor", "manifest"]        // 每个html引用的js模块，也可以在这里加上vendor等公用模块
+//   };
+//   // 需要生成几个html文件，就配置几个HtmlWebpackPlugin对象
+//   webpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
+// }
+
+// module.exports = webpackConfig
