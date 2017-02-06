@@ -12,7 +12,8 @@ function getEntry(globPath) {
   glob.sync(globPath).forEach(function (entry) {
     basename = path.basename(entry, path.extname(entry));
     console.log('entry:=> ', entry)
-    tmp = entry.split('/').splice(-4);
+    // tmp = entry.split('/').splice(-4);
+    tmp = entry.split('/').splice(2);
     var filename = tmp[tmp.length - 1];
     filename = filename.substr(0, filename.lastIndexOf('.'));
     tmp[tmp.length - 1] = filename;
