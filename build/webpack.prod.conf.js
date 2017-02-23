@@ -8,7 +8,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var entryFiles = require('./entry-files.js')
 var env = config.build.env
-var glob = require('glob')
+// var glob = require('glob')
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {

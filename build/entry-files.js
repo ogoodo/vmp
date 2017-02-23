@@ -47,33 +47,75 @@ function getPrefix () {
     }
     return entries;
 }
-
+function gen(plugins, pathname) {
+    // plugins.push(
+    //     new webpack.optimize.CommonsChunkPlugin({
+    //         name: pathname + '/manifest',
+    //         chunks: ['module/vendor']
+    //     })
+    // );
+    // return;
+    // pathname += '/';
+    // plugins.push(
+    //     new webpack.optimize.CommonsChunkPlugin({
+    //         names: [pathname+'vendor', pathname+'manifest']
+    //     })
+    // )
+    // return;
+    plugins.push(
+        new webpack.optimize.CommonsChunkPlugin({
+            name: pathname + 'vendor',
+            children:  false,
+            // minChunks: function (module, count) {
+            //     return true;
+            //     // any required modules inside node_modules are extracted to vendor
+            //     return (
+            //     module.resource &&
+            //     /\.js$/.test(module.resource) &&
+            //     module.resource.indexOf(
+            //         path.join(__dirname, '../node_modules')
+            //     ) === 0
+            //     )
+            // }
+        }),
+        // extract webpack runtime and module manifest to its own file in order to
+        // prevent vendor hash from being updated whenever app bundle is updated
+        new webpack.optimize.CommonsChunkPlugin({
+            name: pathname + 'manifest',
+            chunks: [ pathname + 'vendor']
+        })
+    );
+}
 exports.test = function(plugins) {
     var pubPrefix = getPrefix();
     console.log('pubPrefix:', pubPrefix);
+    // plugins.push( new webpack.optimize.CommonsChunkPlugin({name: 'module/vendor'}) );
     for (var pathname in pubPrefix) {
-        plugins.push(
-            new webpack.optimize.CommonsChunkPlugin({
-                name: pathname + '/vendor',
-                minChunks: function (module, count) {
-                    // any required modules inside node_modules are extracted to vendor
-                    return (
-                    module.resource &&
-                    /\.js$/.test(module.resource) &&
-                    module.resource.indexOf(
-                        path.join(__dirname, '../node_modules')
-                    ) === 0
-                    )
-                }
-            }),
-            // extract webpack runtime and module manifest to its own file in order to
-            // prevent vendor hash from being updated whenever app bundle is updated
-            new webpack.optimize.CommonsChunkPlugin({
-                name: pathname + '/manifest',
-                chunks: ['vendor']
-            })
-        );
+      gen(plugins, pathname)
     }
+    // gen(plugins, 'module')
+    // plugins.push(
+    //     new webpack.optimize.CommonsChunkPlugin({
+    //         name:  'module/vendor',
+    //         minChunks: function (module, count) {
+    //             console.log('minChunks: ', count, module.resource)
+    //             // any required modules inside node_modules are extracted to vendor
+    //             return (
+    //             module.resource &&
+    //             /\.js$/.test(module.resource) &&
+    //             module.resource.indexOf(
+    //                 path.join(__dirname, '../node_modules')
+    //             ) === 0
+    //             )
+    //         }
+    //     }),
+    //     // extract webpack runtime and module manifest to its own file in order to
+    //     // prevent vendor hash from being updated whenever app bundle is updated
+    //     new webpack.optimize.CommonsChunkPlugin({
+    //         name: 'module/manifest',
+    //         chunks: ['module/vendor']
+    //     })
+    // );
 }
 
 exports.genMulPages = function (plugins) {
