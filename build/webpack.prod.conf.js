@@ -100,9 +100,9 @@ var webpackConfig = merge(baseWebpackConfig, {
 //   )
 // }
 
-var pubPrefix = entryFiles.test(webpackConfig.plugins);
-console.log('pubPrefix:', pubPrefix);
-entryFiles.genMulPages(webpackConfig.plugins); // 获得入口js文件
+entryFiles.test(webpackConfig.plugins);
+entryFiles.genMulPages(webpackConfig.plugins);
+
 module.exports = webpackConfig
 
 
