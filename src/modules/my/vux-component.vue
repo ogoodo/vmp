@@ -9,18 +9,40 @@
       <tab-item>全部订单</tab-item>
     </tab>
     <img src="./bd_logo1.png">
+    <x-button type="primary" action-type="button" @click.native="btnClick">按 钮</x-button>
+    <x-dialog v-model="show" class="dialog-demo">
+      <p class="dialog-title">I'm a bg scroll Dialog.</p>
+      <div class="img-box">
+        <img style="max-width:100%">
+      </div>
+      <span class="vux-close" @click="show=false"></span>
+    </x-dialog>
   </div>
 </template>
 
 <script>
-import { Group, Cell, Tab, TabItem } from 'vux'
+import { Group, Cell, Tab, TabItem, XButton, XDialog } from 'vux'
 
 export default {
+  data () {
+    return {
+      show: true,
+      showNoScroll: false,
+      showHideOnBlur: false
+    }
+  },
+  methods: {
+    btnClick: function () {
+      window.alert('hi')
+    }
+  },
   components: {
     Group,
     Cell,
     Tab,
-    TabItem
+    TabItem,
+    XButton,
+    XDialog
   }
 }
 </script>

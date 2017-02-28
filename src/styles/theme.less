@@ -1,26 +1,220 @@
-@yellow: #00f;
-@button-tab-border-color: #00f;
-@button-tab-active-background-color: @yellow;
-@button-tab-active-font-color: #00f;
+@namespace: vux;
 
-@switch-checked-bg-color: @yellow;
-@switch-checked-border-color: @yellow;
+@color-wechat-green: #666;
 
-@number-button-font-color: #00f;
-@number-round-button-enabled-border-color: #00f;
+@theme-color: #aaa;
+@opacity-disabled: 0.5;
 
-@swiper-indicator-active-color: #00f;
 
-@checklist-icon-active-color: #00f;
+/**
+* actionsheet
+*/
+@actionsheet-label-primary-color: #1AAD19;
+@actionsheet-label-warn-color: #E64340;
+@actionsheet-label-default-color: #000;
+@actionsheet-label-disabled-color: #ccc;
 
-@tab-text-active-color: #00f;
-@tab-bar-active-color: #00f;
+/**
+* datetime
+*/
+@datetime-header-item-font-color: @theme-color;
+@datetime-header-item-cancel-font-color: @datetime-header-item-font-color;
+@datetime-header-item-confirm-font-color: @datetime-header-item-font-color;
 
-@dialog-button-text-primary-color: #00f;
-
-@form-preview-button-primary-color: #00f;
-
+/**
+* tabbar
+*/
 @tabbar-text-active-color: #00f;
 
-@toast-position-top-offset: 56px;
-@toast-position-bottom-offset: 60px;
+/**
+* tab
+*/
+@tab-text-disabled-color: #ff0;
+@tab-text-default-color: #0f0;
+@tab-text-active-color: #ff0;
+@tab-bar-active-color: #0ff;
+
+/**
+* dialog
+*/
+@dialog-button-text-primary-color: #f00;
+@dialog-button-text-default-color: #f00;
+
+/**
+* x-number
+*/
+@number-button-font-color: #3cc51f;
+@number-input-font-color: #666;
+@number-button-enabled-border-color: #ececec;
+@number-square-button-enabled-border-color: @number-button-enabled-border-color;
+@number-round-button-enabled-border-color: @number-button-font-color;
+@number-button-disabled-border-color: @number-button-enabled-border-color;
+@number-round-button-disabled-border-color: @number-button-enabled-border-color;
+
+/**
+* checkbox
+*/
+@checkbox-icon-color-checked: #09BB07;
+
+/**
+* check-icon
+*/
+@check-icon-color-checked: @checkbox-icon-color-checked;
+
+/**
+* Cell
+*/
+@cell-label-color: #0F0;
+@cell-font-size: 17px;
+@cell-tips-font-size: 14px;
+
+/**
+* Mask
+*/
+@dialog-mask-background: rgba(0, 0, 0, .6);
+
+/**
+* Range
+*/
+@range-disabled-opacity: @opacity-disabled;
+@range-bar-default-color: #a9acb1;
+@range-bar-active-color: @theme-color;
+
+/**
+* Tabbar
+*/
+@tabbar-index: 100;
+
+/**
+* Header
+*/
+@header-background-color: #35495e;
+@header-title-color: #fff;
+@header-text-color: #ccc;
+@header-arrow-color: #ccc;
+
+/**
+* Timeline
+*/
+@timeline-item-bg-color: @theme-color;
+
+/**
+* Switch
+*/
+@switch-checked-bg-color: @theme-color;
+@switch-checked-border-color: @theme-color;
+@switch-disabled-opacity: 0.6;
+
+/**
+* Button
+*/
+
+@button-global-border-radius: 5px;
+@button-global-font-color: #F00;
+@button-global-margin-top: 15px;
+@button-global-height: 42px;
+@button-global-disabled-font-color: rgba(255,255,0,.6);
+@button-global-active-font-color: rgba(255,255,0,.6);
+@button-global-font-size: 38px;
+
+@button-warn-bg-color: #E64340;
+@button-warn-active-color: #CE3C39;
+
+@button-default-bg-color: #F8F8F8;
+@button-default-font-color: #000000;
+@button-default-active-bg-color: #DEDEDE;
+@button-default-disabled-font-color: rgba(0,0,0,.3);
+@button-default-active-font-color: rgba(0,0,0,.6);
+
+@button-primary-bg-color: #F00;
+@button-primary-active-bg-color: #F22;
+
+/**
+* swipeout
+*/
+@swipeout-button-primary-bg-color: @button-primary-bg-color;
+@swipeout-button-warn-bg-color: @button-warn-bg-color;
+@swipeout-button-default-bg-color: #c8c7cd;
+
+@swipeout-content-bg-color: #FFF;
+@swipeout-button-font-color: #FFF;
+
+/**
+* Cell
+*/
+@cell-body-label-color: #0F0;
+
+/**
+* Badge
+*/
+@badge-bg-color: #f74c31;
+
+/**
+* Popover
+*/
+@popover-bg-color: #35495e;
+@popover-font-color: #fff;
+@popover-border-radius: 3px;
+@popover-border-width: 5px;
+
+/**
+* Button tab
+*/
+@button-tab-border-width: 1px;
+@button-tab-border-radius: 16px;
+
+@button-tab-border-color: @theme-color;
+@button-tab-default-border-color: @button-tab-border-color;
+@button-tab-active-border-color: @button-tab-border-color;
+
+@button-tab-default-background-color: #fdfdfd;
+@button-tab-active-background-color: @color-wechat-green;
+
+@button-tab-active-font-color: #FFF; /* alias */
+@button-tab-active-text-color: @button-tab-active-font-color;
+@button-tab-default-text-color: #999;
+
+@button-tab-height: 80px;
+@button-tab-line-height: 81px;
+
+/**
+* Swiper
+*/
+@swiper-indicator-active-color: @theme-color;
+
+/**
+* checklist
+*/
+@checklist-icon-active-color: #09BB07;
+
+/**
+* popup-picker
+*/
+@popup-picker-header-text-color: @theme-color;
+
+/**
+* form-preview
+*/
+@form-preview-button-primary-color: #0BB20C;
+
+/**
+* load-more
+*/
+@load-more-line-color: #E5E5E5;
+
+/**
+* sticky
+*/
+@sticky-zindex: 500;
+
+/**
+* group
+*/
+@group-title-margin-top: .77em;
+@group-title-margin-bottom: .3em;
+
+/**
+* toast
+*/
+@toast-content-font-size: 16px;
+@toast-top: 180px;
