@@ -13,7 +13,7 @@ var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 var entries = entryFiles.getEntry('./src/modules/**/*.js'); // 获得入口js文件
 
-module.exports = {
+var webpackConfig = {
   // entry: {
   //   app: './src/main.js'
   // },
@@ -32,6 +32,19 @@ module.exports = {
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components')
     }
+      // resolve: {
+      //   extensions: ['.js', '.vue', '.json'],
+      //   modules: [
+      //     resolve('src'),
+      //     resolve('node_modules')
+      //   ],
+      //   alias: {
+      //     'vue$': 'vue/dist/vue.common.js',
+      //     'src': resolve('src'),
+      //     'assets': resolve('src/assets'),
+      //     'components': resolve('src/components')
+      //   }
+      // },
   },
   resolveLoader: {
     fallback: [path.join(__dirname, '../node_modules')]
@@ -70,8 +83,9 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url',
         query: {
-          limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+          // limit: 10000,
+          limit: 1,
+          name: utils.assetsPath('modules/assets/img/[name].[hash:7].[ext]')
         }
       },
       {
@@ -79,7 +93,7 @@ module.exports = {
         loader: 'url',
         query: {
           limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+          name: utils.assetsPath('modules/assets/fonts/[name].[hash:7].[ext]')
         }
       }
     ]
@@ -96,3 +110,7 @@ module.exports = {
     ]
   }
 }
+
+const vuxLoader = require('vux-loader');
+const vuxConfig = require('./vux-config.js');
+module.exports = vuxLoader.merge(webpackConfig, vuxConfig);

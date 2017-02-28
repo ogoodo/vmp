@@ -65,7 +65,10 @@ exports.genMulPages = function (plugins) {
                 collapseWhitespace: false
             },
             inject: true,
-            chunks: [pathname,  modulesName + "/vendor", modulesName + "/manifest", ]
+            chunksSortMode: 'none',
+            // chunks: [pathname,  modulesName + "/vendor", modulesName + "/manifest", ]
+            chunks: [modulesName + "/manifest", modulesName + "/vendor", pathname, ]
+            // chunks: [ modulesName + "/vendor", pathname, ]
         };
         plugins.push(new HtmlWebpackPlugin(conf));
     }
