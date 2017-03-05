@@ -1,0 +1,10 @@
+{
+    "cn":
+    {
+        "My nice title": "Ein schöner Titel",
+        "button_text_test": "json:2中文-关闭{type}"
+    },
+    "en": {
+        "button_text_test": "json:2en-close{type}"
+    }
+}

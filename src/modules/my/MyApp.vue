@@ -10,10 +10,6 @@
 import Hello from '../../components/MyHello'
 import VXX from './vux-component.vue'
 
-// 移除移动端点击延迟
-const FastClick = require('fastclick')
-FastClick.attach(document.body)
-
 export default {
   name: 'myapp',
   components: {

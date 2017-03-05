@@ -15,7 +15,7 @@
       <div class="img-box">
         <img style="max-width:100%">
       </div>
-      <span class="vux-close" @click="show=false"></span>
+      <span class="vux-close" @click="show=false">关闭</span>
     </x-dialog>
   </div>
 </template>
@@ -26,14 +26,15 @@ import { Group, Cell, Tab, TabItem, XButton, XDialog } from 'vux'
 export default {
   data () {
     return {
-      show: true,
+      show: false,
       showNoScroll: false,
       showHideOnBlur: false
     }
   },
   methods: {
     btnClick: function () {
-      window.alert('hi')
+      this.show = !this.show
+      // window.alert('hi')
     }
   },
   components: {
