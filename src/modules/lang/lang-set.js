@@ -28,12 +28,13 @@ Vue.use(vuexI18n.plugin, store)
 // Vue.i18n.add('cn', translationsCn)
 
 Vue.i18n.add('en', lang['en'])
-Vue.i18n.add('cn', lang['cn'])
+Vue.i18n.add('zh-CN', lang['zh-CN'])
 
 console.log('$i18n.locale():', Vue.i18n.locale())
 // set the start locale to use
 window.__lang__ = 'en'
-// Vue.i18n.set('cn')
+// Vue.i18n.set('zh-CN')
 Vue.i18n.set(window.__lang__)
 // Vue.i18n.fallback(window.__lang__);
+console.log('$i18n.locale():', Vue.i18n.locale())
 

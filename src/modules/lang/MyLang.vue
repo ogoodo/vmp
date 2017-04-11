@@ -19,15 +19,22 @@ button_text_test:
   import { XButton } from 'vux'
   export default {
     name: 'myapp',
+    data () {
+      return {
+        currentLang: 'en'
+      }
+    },
     methods: {
       changeLangCn: function () {
-        this.$i18n.set('cn')
+        const self = this
         this.$vux.confirm.show({
           // 组件除show外的属性
           title: 'title',
           content: 'Content',
           onCancel () {},
-          onConfirm () {}
+          onConfirm () {
+            self.$i18n.set('zh-CN')
+          }
         })
       },
       changeLangEn: function () {

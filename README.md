@@ -16,3 +16,8 @@ npm run build
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+测试多语言
+http://localhost:8080/modules/lang/lang.html
+测试功能
+http://localhost:8080/modules/my/my.html
